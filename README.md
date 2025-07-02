@@ -7,6 +7,10 @@
 
  - https://byui-cse.github.io/wdd330-ww-course/week01/team.html
 
+### The url for our working build
+
+ - https://bespoke-axolotl-b4fc60.netlify.app/
+
 ### Prerequisites
 
 - You must have Node installed to run the following commands.
