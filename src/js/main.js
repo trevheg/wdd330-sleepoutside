@@ -1,0 +1,12 @@
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
+
+
+
+const tentsData = new ProductData("tents");
+
+const listElement = document.querySelector(".product-list")
+
+const tentsList = new ProductList("Tents", tentsData, listElement);
+
+tentsList.init();
