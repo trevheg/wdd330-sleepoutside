@@ -34,4 +34,4 @@ renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
 }
 }
-
+//this is a proof
