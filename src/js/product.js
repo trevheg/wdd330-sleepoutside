@@ -1,4 +1,6 @@
-import { getParam } from "./utils.mjs";
+
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
@@ -6,12 +8,12 @@ import ProductDetails from "./ProductDetails.mjs";
 const dataSource = new ProductData("tents");
 const productID = getParam("product")?.trim();
 
-if (!productID) {
-  console.error("Product ID missing from URL");
-  // Optionally, display an error message to the user or redirect them
-} else {
-  const product = new ProductDetails(productID, dataSource);
-  product.init();
+function addProductToCart(product) {
+
+  let cart = getLocalStorage("so-cart") || [];
+  cart.push(product);
+  setLocalStorage("so-cart", cart);
+
 }
 
 // add to cart button event handler
