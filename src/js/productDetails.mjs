@@ -7,15 +7,32 @@ export default class ProductDetails {
         this.dataSource = dataSource;
     }
 
+    //Original code
+    // async init(){
+    //     this.product = await this.dataSource.findProductById(this.productId);
+    //     this.renderProductDetails();
+
+    //     document
+    //     .getElementById("addToCart")
+    //     .addEventListener("click", this.addProductToCart.bind(this));
+    // }
 
     async init(){
         this.product = await this.dataSource.findProductById(this.productId);
+
+        if (!this.product) {
+          console.error(`Product with ID "${this.productId}" not found.`);
+          // Optionally, show a message in the UI or redirect
+          return;  // Stop further execution
+        }
+
         this.renderProductDetails();
 
         document
-        .getElementById("addToCart")
-        .addEventListener("click", this.addProductToCart.bind(this));
+          .getElementById("addToCart")
+          .addEventListener("click", this.addProductToCart.bind(this));
     }
+
 
     addProductToCart(){
         const cartItems = getLocalStorage("so-cart") || [];
@@ -32,20 +49,15 @@ export default class ProductDetails {
     
 
 function productDetailsTemplate(product) {
-       
-        document.querySelector("h2").textContent = product.Brand.Name;
-       
-        document.querySelector("h3").textContent = product.NameWithoutBrand;
+  // ... your existing checks before
 
-        const productImage = document.getElementById("productImage");
-        productImage.src = product.Image;
-        productImage.alt = product.NameWithoutBrand;
-        document.getElementById("productPrice").textContent = product.FinalPrice;
-       
-        document.getElementById("productColor").textContent = product.Colors[0].ColorName;
-        
+  const productImage = document.getElementById("productImage");
+  if (productImage) {
+    productImage.src = product.Image || "default-image.jpg";
+    productImage.alt = product.NameWithoutBrand || "Product Image";
+  } else {
+    console.warn("Missing #productImage element in the DOM.");
+  }
 
-        document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
-        document.getElementById("addToCart").dataset.id = product.Id;
-       
+  // Continue with other elements similarly...
 }

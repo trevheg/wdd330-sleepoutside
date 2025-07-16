@@ -4,10 +4,16 @@ import ProductDetails from "./ProductDetails.mjs";
 
 
 const dataSource = new ProductData("tents");
-const productID = getParam("product");
+const productID = getParam("product")?.trim();
 
-const product = new ProductDetails(productID, dataSource);
-product.init();
+if (!productID) {
+  console.error("Product ID missing from URL");
+  // Optionally, display an error message to the user or redirect them
+} else {
+  const product = new ProductDetails(productID, dataSource);
+  product.init();
+}
+
 // add to cart button event handler
 // async function addToCartHandler(e) {
 //   const product = await dataSource.findProductById(e.target.dataset.id);
