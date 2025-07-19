@@ -39,3 +39,5 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+//This is a proof
