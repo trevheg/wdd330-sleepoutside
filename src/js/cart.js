@@ -40,4 +40,4 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-//This is a proof
+//This is a prove
