@@ -19,17 +19,10 @@ export default class ProductDetails {
 
     async init(){
         this.product = await this.dataSource.findProductById(this.productId);
-
-        if (!this.product) {
-          console.error(`Product with ID "${this.productId}" not found.`);
-          // Optionally, show a message in the UI or redirect
-          return;  // Stop further execution
-        }
-
         this.renderProductDetails();
 
         document
-          .getElementById("addToCart")
+          .getElementById("add-to-cart")
           .addEventListener("click", this.addProductToCart.bind(this));
     }
 
@@ -49,15 +42,23 @@ export default class ProductDetails {
     
 
 function productDetailsTemplate(product) {
+
+  document.querySelector("h2").textContent = product.Category.charAt(0).toUpperCase() + product.Category.slice(1);
+  document.querySelector("#p-brand").textContent = product.Brand.Name;
+  document.querySelector("#p-name").textContent = product.NameWithoutBrand;
   // ... your existing checks before
 
-  const productImage = document.getElementById("productImage");
-  if (productImage) {
-    productImage.src = product.Image || "default-image.jpg";
-    productImage.alt = product.NameWithoutBrand || "Product Image";
-  } else {
-    console.warn("Missing #productImage element in the DOM.");
-  }
+  const productImage = document.querySelector("#p-image");
+  productImage.src = product.Images.PrimaryExtraLarge;
+  productImage.alt = product.NameWithoutBrand;
+  const euroPrice = new Intl.NumberFormat('de-DE',
+    {
+      style: 'currency', currency: 'EUR',
+    }).format(Number(product.FinalPrice) * 0.85);
+    document.querySelector("#p-price").textContent = `${euroPrice}`;
+    document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
+    document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
+    document.querySelector("#add-to-cart").dataset.id = product.Id;
 
   // Continue with other elements similarly...
 }

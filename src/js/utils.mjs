@@ -55,7 +55,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 //Team activity 3
 
-export async function loadTemplate(path) {
+async function loadTemplate(path) {
   const res = await fetch(path);
   const template = await res.text();
   return template;
@@ -63,7 +63,7 @@ export async function loadTemplate(path) {
 
 //team activity 3
 
-export async function loadHeaderFooter(loadTemplate) {
+export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
 
