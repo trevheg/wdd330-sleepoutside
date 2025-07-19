@@ -261,3 +261,13 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.list-footer{
+  font-size: inherit;
+  margin: auto;
+}
+
+.hide{
+  display: none;
+}
+
