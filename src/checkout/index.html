@@ -3,57 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sleep Outside | checkout</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/checkout.js" type="module"></script>
 </head>
+
+
 <body>
-    <header></header>
-    <main>
-        <form action="">
-            <ul>
-                <li>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="user_name" required>
+    <header class="divider" id="main-header"></header>
 
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" id="last_name" name="user_last_name" required>
-                </li>
-                 
 
-                <li>
-                    <label for="street_address">Street Address:</label>
-                    <input type="text" id="street_address" name="street_address" required>
+    <main class="divider checkout">
+        <h2>Review & Place your Order</h2>
+        <section class="checkout-form"> 
+        <form name="checkout">
+            <input type="hidden" name="orderDate" id="orderDate">
 
-                     <label for="city">City:</label>
-                    <input type="text" id="city" name="user_city" required>
+            <fieldset>
 
-                     <label for="state">State:</label>
-                    <input type="text" id="state" name="user_state" required>
-
-                     <label for="zip_code">Zip Code:</label>
-                    <input type="text" id="zip_code" name="user_zip_code" required>
-                </li>
-
-                 <li>
-                    <label for="credit_card_number">Credit Card Number:</label>
-                    <input type="text" id="credit_card_number" name="user_credit_card_number" required>
-
-                    <label for="expiration_date">Expiration Date:</label>
-                    <input type="text" id="expiration_date" name="user_expiration_date" required>
-
-                    <label for="security_code">Security Code:</label>
-                    <input type="text" id="security_code" name="user_security_code" required>
-                </li>
-
-            </ul>
-            <button>Checkout Button</button>
-
-            <ul> 
-                <h2>Summary</h2>
+                <legend></legend>
+                <div class="checkout__name">
+                    
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" required>
+    
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" required>
+                </div>
+                <div class="checkout__address">  
                 
-            </ul>
-        </form>
+                     <label for="street">Street Address</label>
+                     <input type="text" id="street" name="street" required>
+    
+                      <label for="city">City</label>
+                     <input type="text" id="city" name="city" required>
+    
+                      <label for="state">State</label>
+                     <input type="text" id="state" name="state" required>
+    
+                      <label for="zip">Zip Code</label>
+                     <input type="text" id="zip" name="zip" required>
+                </div>
 
+            </fieldset>
+            <fieldset>
+
+                <legend>Payment</legend>
+                <div class="checkout__payment">
+            
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required>
+
+                    <label for="expiration">Expiration</label>
+                    <input type="text" id="expiration" name="expiration" required>
+
+                    <label for="code">CVV</label>
+                    <input type="text" id="code" name="code" required>
+
+                </div>
+            </fieldset>
+            <fieldset class="checkout__summary">
+                <legend>Order summary</legend>
+                <div class="order__summary">
+                    <div id="num-items"></div>
+                    <div>Subtotal</div>
+                    <div id="cartTotal"></div>
+                    <div>Tax</div>
+                    <div id="tax"></div>
+                    <div>shipping</div>
+                    <div id="shipping"></div>
+                    <div>Total</div>
+                    <div id="orderTotal"></div>
+                </div>
+            </fieldset>
+            <button type="submit" id="checkoutSubmit">Checkout</button>
+        </form>
+        </section>
     </main>
-    <footer></footer>
+    <footer id="main-footer"></footer>
 </body>
 </html>
