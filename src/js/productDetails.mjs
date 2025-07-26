@@ -69,4 +69,5 @@ function productDetailsTemplate(product) {
     document.querySelector("#add-to-cart").dataset.id = product.Id;
 
   // Continue with other elements similarly...
+  //prove
 }
