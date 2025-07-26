@@ -16,16 +16,16 @@
     <main class="divider checkout">
         <h2>Review & Place your Order</h2>
         <section class="checkout-form"> 
-        <form name="checkout">
+        <form name="checkout" action="success.html">
             <input type="hidden" name="orderDate" id="orderDate">
 
             <fieldset>
 
-                <legend></legend>
+                <legend>Shipping</legend>
                 <div class="checkout__name">
                     
                     <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="fname" required>
+                    <input type="text" id="fname" name="fname"  required>
     
                     <label for="lname">Last Name</label>
                     <input type="text" id="lname" name="lname" required>
@@ -42,7 +42,7 @@
                      <input type="text" id="state" name="state" required>
     
                       <label for="zip">Zip Code</label>
-                     <input type="text" id="zip" name="zip" required>
+                     <input type="text" id="zip" name="zip" required pattern="\d{5}" title="It must have 5 numbers">
                 </div>
 
             </fieldset>
@@ -52,7 +52,7 @@
                 <div class="checkout__payment">
             
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" id="cardNumber" name="cardNumber" required>
+                    <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" title="It must have 16 numbers">
 
                     <label for="expiration">Expiration</label>
                     <input type="text" id="expiration" name="expiration" required>
@@ -62,7 +62,7 @@
 
                 </div>
             </fieldset>
-            <fieldset class="checkout__summary">
+            <fieldset class="checkout__summary checkout-summary">
                 <legend>Order summary</legend>
                 <div class="order__summary">
                     <div id="num-items"></div>

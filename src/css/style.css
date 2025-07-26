@@ -271,3 +271,28 @@ footer {
   display: none;
 }
 
+input:valid { 
+  border-color: rgb(7, 101, 207);
+}
+
+input:invalid {
+  border-color: rgb(196, 18, 18);
+}
+
+
+label {
+	display: block;
+	margin: 10px;
+	text-align:left;
+}
+
+legend{
+  padding: 10px;
+}
+button{
+  
+  margin: 10px auto;
+}
+button:hover{
+  background-color: #125800;
+}
