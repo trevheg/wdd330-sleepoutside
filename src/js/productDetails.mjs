@@ -1,4 +1,4 @@
-import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource){
@@ -19,7 +19,7 @@ export default class ProductDetails {
 
     async init(){
         this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
+        this.renderProductDetails();
 
         document
           .getElementById("add-to-cart")
@@ -34,16 +34,11 @@ export default class ProductDetails {
         }
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems); 
-        alertMessage(${this.product.NameWithoutBrand} added to cart!);
     }
 
 
-    renderProductDetails(selector){
-      const element = document.querySelector(selector);
-      element.insertAdjacentHTML(
-        "afterBegin",
-        productDetailsTemplate(this.product)
-      );
+    renderProductDetails(){
+        productDetailsTemplate(this.product);
     }
 
 }
@@ -63,10 +58,10 @@ function productDetailsTemplate(product) {
     {
       style: 'currency', currency: 'EUR',
     }).format(Number(product.FinalPrice) * 0.85);
-    document.querySelector("#p-price").textContent = ${euroPrice};
+    document.querySelector("#p-price").textContent = `${euroPrice}`;
     document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
     document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
     document.querySelector("#add-to-cart").dataset.id = product.Id;
 
-  // Continue with other elements similarly...
+  // Continue with other elements similarly...
 }
