@@ -1,5 +1,5 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import { CheckoutProcess} from "./CheckoutProcess.mjs"
+import CheckoutProcess from "./CheckoutProcess.mjs"
 
 loadHeaderFooter();
 
@@ -9,10 +9,20 @@ order.init();
 
 document
 .querySelector("#zip")
-.addEventListener("blur", order.calculateOrderTotal.bind(order));
+.addEventListener("blur", order.calculateOrdertotal.bind(order));
+const myForm = document.forms[0];
 
-document.querySelector("#checkoutsubmit").addEventListener("click", (e) =>{
+document.querySelector("#checkoutSubmit").addEventListener("click", async (e) =>{
     e.preventDefault();
-
-    order.checkout();
+    const chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if(chk_status){
+        console.log("checking....")
+        await order.checkout();
+       
+    }else {
+        console.log("Form no valid");
+    }
+    
 });
+
