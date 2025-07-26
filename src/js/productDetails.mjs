@@ -19,7 +19,7 @@ export default class ProductDetails {
 
     async init(){
         this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails();
+        this.renderProductDetails("main");
 
         document
           .getElementById("add-to-cart")
@@ -28,10 +28,7 @@ export default class ProductDetails {
 
 
     addProductToCart(){
-        let cartItems = getLocalStorage("so-cart");
-        if (!cartItems){
-          cartItems = [];
-        }
+        const cartItems = getLocalStorage("so-cart") || [];
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems); 
     }
