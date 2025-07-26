@@ -255,6 +255,7 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+ 
 }
 
 footer {
@@ -296,3 +297,11 @@ button{
 button:hover{
   background-color: #125800;
 }
+
+@media screen and (max-width: 620px) {
+  img{
+    max-width: 50%;
+  }
+}
+
+
