@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource){
@@ -28,14 +28,22 @@ export default class ProductDetails {
 
 
     addProductToCart(){
-        const cartItems = getLocalStorage("so-cart") || [];
+        let cartItems = getLocalStorage("so-cart");
+        if (!cartItems){
+          cartItems = [];
+        }
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems); 
+        alertMessage("${this.product.NameWithoutBrand} added to cart!");
     }
 
 
-    renderProductDetails(){
-        productDetailsTemplate(this.product);
+    renderProductDetails(selector){
+      const element = document.querySelector(selector);
+      element.insertAdjacentHTML(
+        "afterBegin",
+        productDetailsTemplate(this.product)
+      );
     }
 
 }
@@ -60,5 +68,5 @@ function productDetailsTemplate(product) {
     document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
     document.querySelector("#add-to-cart").dataset.id = product.Id;
 
-  // Continue with other elements similarly...
+  // Continue with other elements similarly...
 }
