@@ -37,3 +37,10 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// Return a parameter from the URL when requested
+export function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const product = urlParams.get(param);
+  return product;
+}
