@@ -22,7 +22,7 @@ function cartItemTemplate(item, index) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  <span class="cart-card__remove" data-index="${index}">X Remove</span>
+  <span class="cart-card__remove" data-id="${item.Id}" data-index="${index}">X Remove</span>
 </li>`;
 
   return newItem;
@@ -30,6 +30,7 @@ function cartItemTemplate(item, index) {
 
 function removeFromCart(index) {
   let cartItems = getLocalStorage("so-cart") || [];
+  
   cartItems.splice(index, 1);
   
   setLocalStorage("so-cart", cartItems);
