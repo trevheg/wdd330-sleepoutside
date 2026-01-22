@@ -1,4 +1,6 @@
-import { getLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 // Render the contents of the cart for the user
 function renderCartContents() {
@@ -49,6 +51,7 @@ function checkCartForItems() {
       `Total Cost: $${totalCost}`;
   }
 }
+
 
 checkCartForItems();
 renderCartContents();

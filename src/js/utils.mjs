@@ -39,6 +39,37 @@ export function renderListWithTemplate(template, parentElement, list, position =
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+export function renderWithTemplate(template, parentElement, data, callback) {
+  // if clear is true we need to clear out the contents of the parent.
+  parentElement.innerHTML = template;
+  if(callback) {
+    callback(data);
+  }
+}
+
+// This asynchronous function fetches the content of the HTML file given a path. The response to the fetch is converted to text and returns the HTML content as a string.
+async function loadTemplate(path) {
+  const fileContents = await fetch(path);
+  const template = await fileContents.text();
+  return template;
+}
+
+// Load the header and footer templates in from the partials using the loadTemplate.
+// Grab the header and footer placeholder elements out of the DOM.
+// Render the header and footer using renderWithTemplate.
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const footerTemplate = await loadTemplate("../partials/footer.hmtl");
+
+  const headerElement = document.querySelector("#header");
+  const footerElement = document.querySelector("#footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+
+}
+
+// Put a number over the cart icon showing if and how many items are in the cart
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   const cartCountElement = document.getElementById("cart-count");
