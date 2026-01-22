@@ -263,6 +263,12 @@ button {
   grid-column: 3;
 }
 
+.cart-footer {
+  display: none;
+  grid-template-columns: 25% auto 15%;
+  text-align: right;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
