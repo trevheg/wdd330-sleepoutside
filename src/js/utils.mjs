@@ -48,13 +48,10 @@ export function updateCartCount() {
     cartCountElement.textContent = itemCount;
 
     if (itemCount === 0) {
-      console.log("Hiding badge");
       cartCountElement.style.display = "none";
     } else {
-      console.log("Showing badge");
       cartCountElement.style.display = "flex";
     }
 
-    //cartCountElement.textContent = cartItems.length;
   }
 }
