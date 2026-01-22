@@ -8,4 +8,4 @@ const productData = new ProductData("tents");
 const productList = new ProductList("tents", productData, element);
 
 productList.init();
-document.addEventListener("DOMContentLoaded", updateCartCount);
+updateCartCount();
