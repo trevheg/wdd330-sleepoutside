@@ -40,7 +40,6 @@ export function renderListWithTemplate(template, parentElement, list, position =
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
-  // if clear is true we need to clear out the contents of the parent.
   parentElement.innerHTML = template;
   if(callback) {
     callback(data);
@@ -59,16 +58,14 @@ async function loadTemplate(path) {
 // Render the header and footer using renderWithTemplate.
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
-  const footerTemplate = await loadTemplate("../partials/footer.hmtl");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
 
-  const headerElement = document.querySelector("#header");
-  const footerElement = document.querySelector("#footer");
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
-
 }
-
 // Put a number over the cart icon showing if and how many items are in the cart
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
