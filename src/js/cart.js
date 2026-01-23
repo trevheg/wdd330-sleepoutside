@@ -53,6 +53,6 @@ function checkCartForItems() {
 }
 
 
-checkCartForItems();
 renderCartContents();
+checkCartForItems();
 updateCartCount();
