@@ -65,10 +65,16 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  updateCartCount(); // calling to update the cart Badge after loading the header and footer
 }
+
 // Put a number over the cart icon showing if and how many items are in the cart
-export function updateCartCount() {
-  const cartItems = getLocalStorage("so-cart") || [];
+export function updateCartCount(cartItems = null) {
+  // if not fetched, re-assign parameter
+  if (!cartItems) {
+    cartItems = getLocalStorage("so-cart") || [];
+  }
   const cartCountElement = document.getElementById("cart-count");
 
   if (cartCountElement) {

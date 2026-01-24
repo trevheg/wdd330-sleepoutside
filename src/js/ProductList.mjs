@@ -10,10 +10,8 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
         </a>
     </li>
-    
     `;
 }
-
 
 export default class ProductList {
     constructor(category, dataSource, listElement) {
