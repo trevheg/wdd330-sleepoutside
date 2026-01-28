@@ -215,11 +215,14 @@ button {
 
 /* End product list card */
 
+/* Styles for product details */
 .product-detail {
   padding: 1em;
   max-width: 500px;
   margin: auto;
 }
+
+/* End product details */
 
 .product-detail img {
   width: 100%;
@@ -268,6 +271,27 @@ button {
   grid-template-columns: 25% auto 15%;
   text-align: right;
 }
+
+/* End cart list card styles */
+
+/* Category Links */
+
+.category-links {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+}
+
+/* .category-links a {
+  display: grid;
+  justify-content: center;
+} */
+
+.category-links img {
+  height: 100px;
+}
+
+/* End Category Links */
 
 @media screen and (min-width: 500px) {
   body {
