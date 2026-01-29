@@ -18,14 +18,12 @@ export default class ProductData {
     const response = await fetch(`${baseURL}products/search/${category} `);
     // "data" is the information on the product of this category. "data.Result" is just the array of all the products of this category
     const data = await convertToJson(response);
-    console.log(data)
     return data.Result;
   }
   // returns the data of a single product given its id from the API at "baseURL" (defined above)
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
-    console.log(data.Result);
     return data.Result;
   }
 }
