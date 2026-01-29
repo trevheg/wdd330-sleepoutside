@@ -3,9 +3,12 @@ import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 export default class ProductDetails {
 
     constructor(key, productId, dataSource) {
+        // The name of the key  of the saved information in localStorage
         this.key = key;
+        // the id of the product
         this.productId = productId;
         this.product = {};
+        // an object with methods for fetching data from APIs and returning either data on a category of products or a single product. 
         this.dataSource = dataSource;
     }
 
@@ -37,7 +40,7 @@ function productDetailsTemplate(product) {
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
-    productImage.src = product.Image;
+    productImage.src = product.Images.PrimaryLarge;
     productImage.alt = product.NameWithoutBrand;
 
     document.getElementById('productPrice').textContent = product.FinalPrice;
