@@ -31,11 +31,14 @@ export function getParam(param) {
 }
 
 export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  // map through "list" and return array of html elements for each product object in "list"
   const htmlStrings = list.map(template);
-  // if clear is true we need to clear out the contents of the parent.
+  // if clear is "true" we need to clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "";
   }
+
+  // Join the array of html elements to the parentElement. The default is after whatever else is in there. 
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
