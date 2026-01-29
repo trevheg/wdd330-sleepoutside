@@ -3,7 +3,7 @@ import ShoppingCart from "./ShoppingCart.mjs";
 
 loadHeaderFooter();
 
-const listElement = document.querySelector(".product-list");
+const listElement = document.querySelector(".cart-list"); //Updated from .product-list
 
 const cart = new ShoppingCart("so-cart", listElement);
 cart.init();
