@@ -35,6 +35,7 @@ export default class ProductDetails {
 
 }
 
+// edits the page to match the details of the product contained in the parameter object
 function productDetailsTemplate(product) {
     document.querySelector('h2').textContent = product.Brand.Name;
     document.querySelector('h3').textContent = product.NameWithoutBrand;
@@ -43,7 +44,7 @@ function productDetailsTemplate(product) {
     productImage.src = product.Images.PrimaryLarge;
     productImage.alt = product.NameWithoutBrand;
 
-    document.getElementById('productPrice').textContent = product.FinalPrice;
+    document.getElementById('productPrice').textContent = "$" + product.FinalPrice;
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
