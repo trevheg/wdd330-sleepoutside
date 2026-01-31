@@ -21,7 +21,7 @@
         <div class="checkout-container">
           
           <!-- Checkout Form -->
-          <form id="checkout-form" class="checkout-form">
+          <form id="checkout-form" name="checkout" class="checkout-form">
 
             <fieldset>
               <legend>Customer Information</legend>
@@ -79,10 +79,10 @@
             </div>
             <div class="summary-item summary-total">
               <span>Order Total:</span>
-              <span id="orderTotal">$0.00</span>
+              <span id="order-total">$0.00</span>
             </div>
 
-            <button type="submit">Complete Purchase</button>
+            <button type="submit" form="checkout-form">Complete Purchase</button>
           </div>
 
         </div>

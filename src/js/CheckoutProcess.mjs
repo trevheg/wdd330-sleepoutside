@@ -1,7 +1,22 @@
+import { getLocalStorage } from "./utils.mjs";
+
+// takes a form element and returns an object where the key is the "name" of the form input.
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
 export default class CheckoutProcess {
-  constructor(key, outputSelector) {
+  constructor(key, outputSelector, services) {
     this.key = key;
     this.outputSelector = outputSelector;
+    this.services = services;
     this.list = [];
     this.itemTotal = 0;
     this.shipping = 0;
@@ -11,7 +26,16 @@ export default class CheckoutProcess {
 
   init() {
     this.list = getLocalStorage(this.key);
-    this.calculateItemSummary();
+    this.calculateItemSubTotal();
+  }
+
+  packageItems(items) {
+    return items.map(item => ({
+      id: item.Id,
+      name: item.Name,
+      price: item.FinalPrice,
+      quantity: 1
+    }));
   }
 
   calculateItemSubTotal() {
@@ -44,5 +68,24 @@ export default class CheckoutProcess {
     tax.innerText = `$${this.tax.toFixed(2)}`;
     shippingElement.innerText = `$${this.shipping.toFixed(2)}`;
     orderTotalElement.innerText = `$${this.orderTotal.toFixed(2)}`;
+  }
+
+  async checkout(form) {
+    // Get the form element data by the form name
+    const order = formDataToJSON(form);
+
+    // Populate the JSON order ojbect with the Data below
+    order.orderDate = new Date().toISOString();
+    order.orderTotal = this.orderTotal;
+    order.tax = this.tax;
+    order.shipping = this.shipping;
+    order.items = this.packageItems(this.list);
+
+    try {
+      const response = await this.services.checkout(order);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
