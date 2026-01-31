@@ -25,11 +25,11 @@
 
             <fieldset>
               <legend>Customer Information</legend>
-              <label for="first-name">First Name <span class="required">*</span></label>
-              <input type="text" id="first-name" name="firstName" required>
+              <label for="fname">First Name <span class="required">*</span></label>
+              <input type="text" id="fname" name="fname" required>
 
-              <label for="last-name">Last Name <span class="required">*</span></label>
-              <input type="text" id="last-name" name="lastName" required>
+              <label for="lname">Last Name <span class="required">*</span></label>
+              <input type="text" id="lname" name="lname" required>
             </fieldset>
 
             <fieldset>
@@ -49,14 +49,14 @@
 
             <fieldset>
               <legend>Payment Information</legend>
-              <label for="card-number">Credit Card Number <span class="required">*</span></label>
-              <input type="text" id="card-number" name="cardNumber" pattern="[0-9]{16}" maxlength="16" required>
+              <label for="cardNumber">Credit Card Number <span class="required">*</span></label>
+              <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" maxlength="16" required>
               
               <label for="expiration">Expiration Date (MM/YY) <span class="required">*</span></label>
               <input type="text" id="expiration" name="expiration" pattern="[0-9]{2}/[0-9]{2}" placeholder="MM/YY" required>
               
-              <label for="security-code">Security Code (CVV) <span class="required">*</span></label>
-              <input type="text" id="security-code" name="securityCode" pattern="[0-9]{3,4}" maxlength="4" required>
+              <label for="code">Security Code (CVV) <span class="required">*</span></label>
+              <input type="text" id="code" name="code" pattern="[0-9]{3,4}" maxlength="4" required>
             </fieldset>
 
           </form>
@@ -79,7 +79,7 @@
             </div>
             <div class="summary-item summary-total">
               <span>Order Total:</span>
-              <span id="order-total">$0.00</span>
+              <span id="orderTotal">$0.00</span>
             </div>
 
             <button type="submit">Complete Purchase</button>

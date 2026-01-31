@@ -9,7 +9,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {
   }
   // Returns the data of "category" products from the API url "baseURL" (defined above)
