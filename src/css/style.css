@@ -94,6 +94,12 @@ p {
   margin-top: -1.7em;
 }
 
+.discount {
+  background-color: red;
+  color: white;
+  padding: .3rem;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -222,11 +228,11 @@ button {
   margin: auto;
 }
 
-/* End product details */
-
 .product-detail img {
   width: 100%;
 }
+/* End product details */
+
 
 /* Start cart list card styles */
 .cart-list {
