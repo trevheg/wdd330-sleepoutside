@@ -9,6 +9,7 @@ function convertToJson(res) {
   }
 }
 
+// This class has methods that fetch information from an API about a "category" of product, and about a single product given its id. 
 export default class ProductData {
   constructor() {
   }
