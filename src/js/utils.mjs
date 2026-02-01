@@ -81,7 +81,8 @@ export function updateCartCount(cartItems = null) {
   const cartCountElement = document.getElementById("cart-count");
 
   if (cartCountElement) {
-    const itemCount = cartItems.length;
+    // Get the total quantity
+    const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
     cartCountElement.textContent = itemCount;
 
     if (itemCount === 0) {

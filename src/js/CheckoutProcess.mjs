@@ -43,7 +43,7 @@ export default class CheckoutProcess {
 
     const summaryElement = document.querySelector(this.outputSelector + " #subtotal");
     // calculate the total of all the items in the cart
-    const amounts = this.list.map((item) => item.FinalPrice);
+    const amounts = this.list.map((item) => item.FinalPrice * (item.quantity || 1));
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerText = `$${this.itemTotal.toFixed(2)}`;
 
