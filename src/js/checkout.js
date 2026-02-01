@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, setLocalStorage } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
@@ -16,5 +16,5 @@ document.querySelector("#zip").addEventListener("blur", order.calculateOrderTota
 const checkoutForm = document.querySelector("#checkout-form");
 checkoutForm.addEventListener("submit", async(e) => {
     e.preventDefault();
-    order.checkout(checkoutForm);
-})
+    order.checkout(checkoutForm);    
+});

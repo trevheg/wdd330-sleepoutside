@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -27,6 +27,13 @@ export default class ProductDetails {
         setLocalStorage(this.key, cartItems);
 
         updateCartCount();
+
+          // Remove any existing alerts first
+        const existingAlert = document.querySelector(".alert");
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+        alertMessage(`Successfully added to cart!`, true);
     }
 
     renderProductDetails() {

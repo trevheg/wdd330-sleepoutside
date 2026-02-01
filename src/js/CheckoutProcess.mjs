@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
@@ -70,6 +70,13 @@ export default class CheckoutProcess {
     orderTotalElement.innerText = `$${this.orderTotal.toFixed(2)}`;
   }
 
+  toggleLoading(show) {
+    const overlay = document.getElementById("loading-overlay");
+    if (overlay) {
+      overlay.classList.toggle("active", show);
+    }
+  }
+
   async checkout(form) {
     // Get the form element data by the form name
     const order = formDataToJSON(form);
@@ -81,11 +88,38 @@ export default class CheckoutProcess {
     order.shipping = this.shipping;
     order.items = this.packageItems(this.list);
 
+    // Show loading spinner
+    this.toggleLoading(true);
+
+    // Runs if validation passes
     try {
-      const response = await this.services.checkout(order);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+      // Submit and return handler
+      await this.services.checkout(order);
+      // Clearing localStorage
+      setLocalStorage("so-cart", []);
+
+      // Redirect to Happy Path
+      location.assign("/checkout/success.html");
+    } catch(err) {
+      // Hide loading spinner on error
+      this.toggleLoading(false);
+
+      // Clear any existing alerts first so they don't stack up
+      const existingAlerts = document.querySelectorAll(".alert");
+      existingAlerts.forEach((alert) => alert.remove());
+
+      // 'err' usually contains the object we threw in convertToJson
+      if (err.message) {
+        for (let key in err.message) {
+          alertMessage(`${err.message[key]}`);
+        }
+      } else {
+        alertMessage("An unexpected error occurred.");
+      }
     }
   }
 }
+
+
+
+

@@ -89,6 +89,28 @@ export function updateCartCount(cartItems = null) {
     } else {
       cartCountElement.style.display = "flex";
     }
+  }
+}
 
+export function alertMessage(message, scroll=true) {
+
+  //Create element for alert
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  // Add listener to the alert
+  alert.addEventListener("click", function(e) {
+    if (e.target.tagName === "SPAN") {
+    main.removeChild(this);
+    }
+  });
+
+  // Add the alert to the top of main
+  const main = document.querySelector('main');
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo(0, 0);
   }
 }
