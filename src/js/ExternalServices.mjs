@@ -9,8 +9,7 @@ function convertToJson(res) {
   }
 }
 
-// This class has methods that fetch information from an API about a "category" of product, and about a single product given its id. 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {
   }
   // Returns the data of "category" products from the API url "baseURL" (defined above)
@@ -26,5 +25,18 @@ export default class ProductData {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
     return data.Result;
+  }
+
+  // Submit checkout order to the server
+  async checkout(payload) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    };
+    
+    return await fetch(`${baseURL}checkout`, options).then(convertToJson);
   }
 }
