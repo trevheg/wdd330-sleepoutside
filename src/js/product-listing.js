@@ -6,7 +6,7 @@ loadHeaderFooter();
 
 // Get the category from the url
 const category = getParam("category");
-// Make a ProductData object
+// Make a ExternalServices object
 const productData = new ExternalServices();
 // Find the element on the page where you want to render the list
 const element = document.querySelector(".product-list");
