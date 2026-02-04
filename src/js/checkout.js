@@ -9,12 +9,16 @@ const services = new ExternalServices();
 const order = new CheckoutProcess("so-cart", ".order-summary", services);
 order.init();
 
-// Add event listeners to fire calculateOrderTotal when the user changes the zip code
+// Add event listener to run calculateOrderTotal when the user changes the zip code
 document.querySelector("#zip").addEventListener("blur", order.calculateOrderTotal.bind(order));
 
 // Waiting for Submit Form
 const checkoutForm = document.querySelector("#checkout-form");
-checkoutForm.addEventListener("submit", async(e) => {
-    e.preventDefault();
-    order.checkout(checkoutForm);
-})
+checkoutForm.addEventListener('click', (e) => {
+  e.preventDefault();
+  const myForm = document.forms[0];
+  const chk_status = myForm.checkValidity();
+  myForm.reportValidity();
+  if(chk_status)
+    myCheckout.checkout();
+  });

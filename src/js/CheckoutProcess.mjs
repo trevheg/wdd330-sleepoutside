@@ -71,15 +71,16 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
-    // Get the form element data by the form name
+    // Get the information the user entered into the form element 
     const order = formDataToJSON(form);
 
-    // Populate the JSON order ojbect with the Data below
+    // Add data the JSON order ojbect with the Data below
     order.orderDate = new Date().toISOString();
     order.orderTotal = this.orderTotal;
     order.tax = this.tax;
     order.shipping = this.shipping;
     order.items = this.packageItems(this.list);
+    console.log(order)
 
     try {
       const response = await this.services.checkout(order);
