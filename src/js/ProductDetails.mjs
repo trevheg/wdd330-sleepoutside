@@ -37,6 +37,10 @@ export default class ProductDetails {
 
 // edits the page to match the details of the product contained in the parameter object
 function productDetailsTemplate(product) {
+
+    // determines if there is a discount on the item and prepares a message of "x% Off!"
+    const discountPercent = product.FinalPrice < product.SuggestedRetailPrice ? `${parseInt(100 * ((product.SuggestedRetailPrice - product.FinalPrice)/product.SuggestedRetailPrice))}% Off!` : "";
+
     document.querySelector('h2').textContent = product.Brand.Name;
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
@@ -45,6 +49,7 @@ function productDetailsTemplate(product) {
     productImage.alt = product.NameWithoutBrand;
 
     document.getElementById('productPrice').textContent = "$" + product.FinalPrice;
+    document.getElementById("productPrice").innerHTML += ` <span class='discount'>${discountPercent}</span>`
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
