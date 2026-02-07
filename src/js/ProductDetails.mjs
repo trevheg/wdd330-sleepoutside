@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -23,10 +23,27 @@ export default class ProductDetails {
     addProductToCart() {
         const cartItems = getLocalStorage(this.key) || [];
 
-        cartItems.push(this.product);
+        // Check if item already exists in cart
+        const existingItemIndex = cartItems.findIndex(item => item.Id === this.product.Id);
+        if (existingItemIndex > -1) {
+            // Increment 1 if Item exists
+            cartItems[existingItemIndex].quantity += 1;
+        } else {
+            //Add 1 if Item doesn't exist
+            this.product.quantity = 1;
+            cartItems.push(this.product);
+        }
+    
         setLocalStorage(this.key, cartItems);
 
         updateCartCount();
+
+          // Remove any existing alerts first
+        const existingAlert = document.querySelector(".alert");
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+        alertMessage(`Successfully added to cart!`, true);
     }
 
     renderProductDetails() {
